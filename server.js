@@ -14,6 +14,8 @@ const app = express();
 app.use(express.urlencoded({extended: true}));
 //parse incoming JSON data
 app.use(express.json());
+// instruct the server to make certain files readily available
+app.use(express.static('public'));
 
 // handle filter functionality
 // this function will take req.query as an argument and filter through the animals accordingly, returning the new filtered array
@@ -86,10 +88,11 @@ function validateAnimal(animal) {
     return true;
 }
 
-// add the route
-app.get('/',(req, res) => {
-    res.json({message: 'Hello World!'})
-});
+// add routes
+// app.get('/',(req, res) => {
+//     res.json({message: 'Hello World!'})
+// });
+
 app.get('/api/animals', (req, res) => {
     // console.log(__dirname);
     let results = animals;
@@ -127,6 +130,9 @@ app.post('/api/animals', (req, res) => {
     }
 });
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
 // to make our server listen
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`)
