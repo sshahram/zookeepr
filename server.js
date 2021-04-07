@@ -87,7 +87,11 @@ function validateAnimal(animal) {
 }
 
 // add the route
+app.get('/',(req, res) => {
+    res.json({message: 'Hello World!'})
+});
 app.get('/api/animals', (req, res) => {
+    console.log(__dirname);
     let results = animals;
     if(req.query) {
         results = filterByQuery(req.query, results);
