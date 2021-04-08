@@ -130,9 +130,28 @@ app.post('/api/animals', (req, res) => {
     }
 });
 
+// route to serve index.html page
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });
+
+// route to serve animals.html
+app.get('/animals', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/animals.html'));
+});
+
+// route to serve zookeepers.html
+app.get('/zookeepers', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/zookeepers.html'));
+});
+
+// If client makes a request for a route that doesn't exist
+// for example /about
+// They will be redirected to the homepage
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
 // to make our server listen
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`)
