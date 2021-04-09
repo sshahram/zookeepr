@@ -22,43 +22,6 @@ app.use(express.static('public'));
 //     res.json({message: 'Hello World!'})
 // });
 
-app.get('/api/animals', (req, res) => {
-    // console.log(__dirname);
-    let results = animals;
-    if(req.query) {
-        results = filterByQuery(req.query, results);
-    }
-    res.json(results);
-});
-
-// add the rout for a specific animal
-// param route
-app.get('/api/animals/:id', (req, res) => {
-    const result = findById(req.params.id, animals);
-    if(result) {
-        res.json(result);
-    } else {
-        res.send(404);
-    }
-});
-
-// post request to add data to the server
-
-app.post('/api/animals', (req, res) => {
-    // set id based on what the next index of the array will be
-    req.body.id = animals.length.toString();
-    // req.body is where our incoming content will be 
-    // console.log(req.body);
-    // if any data in req.bidy is incorrect, send 400 error back
-    if(!validateAnimal(req.body)) {
-        res.status(400).send('The animal is not prperly formatted.');
-    } else {
-        // add animal to json file and animals array in this function
-        const animal = createNewAnimal(req.body, animals);
-        res.json(animal);
-    }
-});
-
 // route to serve index.html page
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
