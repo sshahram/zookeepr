@@ -31,7 +31,7 @@ router.post('/animals', (req, res) => {
     req.body.id = animals.length.toString();
     // req.body is where our incoming content will be 
     // console.log(req.body);
-    // if any data in req.bidy is incorrect, send 400 error back
+    // if any data in req.body is incorrect, send 400 error back
     if(!validateAnimal(req.body)) {
         res.status(400).send('The animal is not prperly formatted.');
     } else {

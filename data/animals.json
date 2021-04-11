@@ -127,6 +127,16 @@
         "goofy"
       ],
       "id": "12"
+    },
+    {
+      "name": "Lion",
+      "species": "Felidae",
+      "diet": "herbivore",
+      "personalityTraits": [
+        "hungry",
+        "anxious"
+      ],
+      "id": "13"
     }
   ]
 }
